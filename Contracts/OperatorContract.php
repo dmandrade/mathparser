@@ -21,7 +21,6 @@
 
 namespace App\MathParser\Contracts;
 
-
 use App\MathParser\Stack;
 
 interface OperatorContract extends ExpressionContract

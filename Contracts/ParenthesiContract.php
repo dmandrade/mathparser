@@ -21,7 +21,6 @@
 
 namespace App\MathParser\Contracts;
 
-
 interface ParenthesiContract
 {
     /**
