@@ -43,5 +43,4 @@ class Exp extends OperatorBase
         $newNumber = new Number(exp($next));
         return $newNumber->operate($stack);
     }
-
 }

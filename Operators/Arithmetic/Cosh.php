@@ -43,5 +43,4 @@ class Cosh extends OperatorBase
         $newNumber = new Number(cosh($next));
         return $newNumber->operate($stack);
     }
-
 }

@@ -43,5 +43,4 @@ class Asin extends OperatorBase
         $newNumber = new Number(asin($next));
         return $newNumber->operate($stack);
     }
-
 }

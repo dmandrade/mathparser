@@ -43,5 +43,4 @@ class Round extends OperatorBase
         $newNumber = new Number(round($next, 0, PHP_ROUND_HALF_DOWN));
         return $newNumber->operate($stack);
     }
-
 }

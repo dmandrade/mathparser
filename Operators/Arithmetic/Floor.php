@@ -43,5 +43,4 @@ class Floor extends OperatorBase
         $newNumber = new Number(floor($next));
         return $newNumber->operate($stack);
     }
-
 }

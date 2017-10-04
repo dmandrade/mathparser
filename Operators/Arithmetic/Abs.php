@@ -43,5 +43,4 @@ class Abs extends OperatorBase
         $newNumber = new Number(abs($next));
         return $newNumber->operate($stack);
     }
-
 }

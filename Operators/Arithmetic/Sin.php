@@ -43,5 +43,4 @@ class Sin extends OperatorBase
         $newNumber = new Number(sin($next));
         return $newNumber->operate($stack);
     }
-
 }

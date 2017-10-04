@@ -43,5 +43,4 @@ class Ceil extends OperatorBase
         $newNumber = new Number(ceil($next));
         return $newNumber->operate($stack);
     }
-
 }

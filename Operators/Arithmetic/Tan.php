@@ -43,5 +43,4 @@ class Tan extends OperatorBase
         $newNumber = new Number(tan($next));
         return $newNumber->operate($stack);
     }
-
 }

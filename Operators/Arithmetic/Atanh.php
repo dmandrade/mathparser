@@ -43,5 +43,4 @@ class Atanh extends OperatorBase
         $newNumber = new Number(atanh($next));
         return $newNumber->operate($stack);
     }
-
 }

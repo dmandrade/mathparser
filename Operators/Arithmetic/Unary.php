@@ -43,5 +43,4 @@ class Unary extends OperatorBase
         $unaryNumber = new Number(-$next);
         return $unaryNumber->operate($stack);
     }
-
 }

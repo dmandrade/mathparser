@@ -28,5 +28,4 @@ interface ParenthesiContract
      * @return boolean
      */
     public function isOpen();
-
 }

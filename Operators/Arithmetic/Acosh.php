@@ -43,5 +43,4 @@ class Acosh extends OperatorBase
         $newNumber = new Number(acosh($next));
         return $newNumber->operate($stack);
     }
-
 }

@@ -40,5 +40,4 @@ class Pow extends OperatorBase
         $right = $stack->pop()->operate($stack);
         return pow($left, $right);
     }
-
 }

@@ -43,5 +43,4 @@ class Asinh extends OperatorBase
         $newNumber = new Number(asinh($next));
         return $newNumber->operate($stack);
     }
-
 }

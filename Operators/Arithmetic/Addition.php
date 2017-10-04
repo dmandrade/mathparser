@@ -40,5 +40,4 @@ class Addition extends OperatorBase
         $right = $stack->pop()->operate($stack);
         return $left + $right;
     }
-
 }

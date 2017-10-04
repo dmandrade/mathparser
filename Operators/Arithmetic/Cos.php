@@ -43,5 +43,4 @@ class Cos extends OperatorBase
         $newNumber = new Number(cos($next));
         return $newNumber->operate($stack);
     }
-
 }

@@ -43,5 +43,4 @@ class Acos extends OperatorBase
         $newNumber = new Number(acos($next));
         return $newNumber->operate($stack);
     }
-
 }

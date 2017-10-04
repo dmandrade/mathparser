@@ -43,5 +43,4 @@ class Sqrt extends OperatorBase
         $newNumber = new Number(sqrt($next));
         return $newNumber->operate($stack);
     }
-
 }

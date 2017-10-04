@@ -41,5 +41,4 @@ class Subtraction extends OperatorBase
         $right = $stack->pop()->operate($stack);
         return $right - $left;
     }
-
 }

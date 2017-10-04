@@ -43,5 +43,4 @@ class Atan2 extends OperatorBase
         $newNumber = new Number(atan2($next, 0));
         return $newNumber->operate($stack);
     }
-
 }

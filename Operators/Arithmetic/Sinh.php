@@ -43,5 +43,4 @@ class Sinh extends OperatorBase
         $newNumber = new Number(sinh($next));
         return $newNumber->operate($stack);
     }
-
 }

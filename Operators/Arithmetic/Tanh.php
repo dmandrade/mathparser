@@ -43,5 +43,4 @@ class Tanh extends OperatorBase
         $newNumber = new Number(tanh($next));
         return $newNumber->operate($stack);
     }
-
 }

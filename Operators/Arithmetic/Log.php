@@ -43,5 +43,4 @@ class Log extends OperatorBase
         $newNumber = new Number(log($next));
         return $newNumber->operate($stack);
     }
-
 }

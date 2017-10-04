@@ -43,5 +43,4 @@ class Cbrt extends OperatorBase
         $newNumber = new Number(pow($next, 1 / 3));
         return $newNumber->operate($stack);
     }
-
 }
