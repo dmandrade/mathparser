@@ -75,11 +75,13 @@ class Engine
 
             if ($expression instanceof OperatorContract) {
                 $this->parseOperator($expression, $output, $operators);
+                continue;
             } elseif ($expression instanceof ParenthesiContract) {
                 $this->parseParenthesis($expression, $output, $operators);
-            } else {
-                $output->push($expression);
+                continue;
             }
+
+            $output->push($expression);
         }
 
         // validate parenthesises
@@ -100,7 +102,9 @@ class Engine
     protected function tokenize($string)
     {
         $parts = preg_split(
-            '((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)', $string, null,
+            '((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)',
+            $string,
+            null,
             PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
         );
         $parts = array_map('trim', $parts);
