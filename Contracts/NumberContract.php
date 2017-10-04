@@ -28,5 +28,4 @@ interface NumberContract
      * @return mixed
      */
     public function operate();
-
 }

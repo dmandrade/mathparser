@@ -21,7 +21,6 @@
 
 namespace App\MathParser;
 
-
 class Stack
 {
     protected $data = array();
@@ -51,5 +50,4 @@ class Stack
     {
         return current(array_slice($this->data, -1));
     }
-
 }

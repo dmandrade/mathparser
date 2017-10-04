@@ -49,5 +49,4 @@ abstract class OperatorBase extends Expression implements OperatorContract
     {
         return $this->leftAssoc;
     }
-
 }

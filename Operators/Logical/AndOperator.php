@@ -41,5 +41,4 @@ class AndOperator extends OperatorBase
         $right = $stack->pop()->operate($stack);
         return (int)($left && $right);
     }
-
 }

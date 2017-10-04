@@ -40,5 +40,4 @@ interface OperatorContract extends ExpressionContract
      * @return bool
      */
     public function isLeftAssoc();
-
 }

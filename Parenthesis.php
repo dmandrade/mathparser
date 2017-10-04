@@ -29,5 +29,4 @@ class Parenthesis extends Expression implements ParenthesiContract
     {
         return $this->value == '(';
     }
-
 }

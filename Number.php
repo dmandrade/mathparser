@@ -30,5 +30,4 @@ class Number extends Expression implements NumberContract
     {
         return $this->value;
     }
-
 }

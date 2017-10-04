@@ -99,8 +99,10 @@ class Engine
      */
     protected function tokenize($string)
     {
-        $parts = preg_split('((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)', $string, null,
-            PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $parts = preg_split(
+            '((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)', $string, null,
+            PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
+        );
         $parts = array_map('trim', $parts);
         foreach ($parts as $key => &$value) {
             //if this is the first token or we've already had an operator or open parenthesis, this is unary
@@ -156,19 +158,20 @@ class Engine
     {
         if ($expression->isOpen()) {
             $operators->push($expression);
-        } else {
-            $clean = false;
-            while (!$operators->isEmpty() && ($end = $operators->pop())) {
-                if ($end instanceof ParenthesiContract) {
-                    $clean = true;
-                    break;
-                }
+            return;
+        }
 
-                $output->push($end);
+        $clean = false;
+        while (!$operators->isEmpty() && ($end = $operators->pop())) {
+            if ($end instanceof ParenthesiContract) {
+                $clean = true;
+                break;
             }
-            if (!$clean) {
-                throw new MismatchParenteshisException('Mismatched Parenthesis');
-            }
+
+            $output->push($end);
+        }
+        if (!$clean) {
+            throw new MismatchParenteshisException('Mismatched Parenthesis');
         }
     }
 
@@ -195,8 +198,8 @@ class Engine
     protected function render(Stack $stack)
     {
         $output = '';
-        while (!$stack->isEmpty() && ($el = $stack->pop())) {
-            $output .= $el->render();
+        while (!$stack->isEmpty() && ($expression = $stack->pop())) {
+            $output .= $expression->render();
         }
 
         if ($output) {
