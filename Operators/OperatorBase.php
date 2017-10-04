@@ -14,8 +14,8 @@
 
 namespace App\MathParser\Operators;
 
-use App\MathParser\Expression;
 use App\MathParser\Contracts\OperatorContract;
+use App\MathParser\Expression;
 
 /**
  * Class OperatorBase
