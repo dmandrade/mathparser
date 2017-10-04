@@ -14,18 +14,19 @@
 
 namespace App\MathParser;
 
+use App\MathParser\Contracts\NumberContract;
+
 /**
  * Class Number
  * @package App\MathParser
  */
-class Number extends Expression
+class Number extends Expression implements NumberContract
 {
 
     /**
-     * @param Stack $stack
      * @return string
      */
-    public function operate(Stack $stack)
+    public function operate()
     {
         return $this->value;
     }

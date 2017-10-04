@@ -31,11 +31,6 @@ class Unary extends OperatorBase
      */
     protected $precedence = 7;
 
-    public function isUnary()
-    {
-        return true;
-    }
-
     /**
      * @param Stack $stack
      * @return mixed

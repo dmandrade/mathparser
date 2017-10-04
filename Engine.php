@@ -14,6 +14,8 @@
 
 namespace App\MathParser;
 
+use App\MathParser\Contracts\OperatorContract;
+use App\MathParser\Contracts\ParenthesiContract;
 use App\MathParser\Exceptions\CannotRenderException;
 use App\MathParser\Exceptions\MismatchParenteshisException;
 use App\MathParser\Operators\OperatorBase;
@@ -69,11 +71,11 @@ class Engine
         foreach ($tokens as $token) {
             $token = $this->extractVariables($token);
 
-            $expression = Expression::factory($token);
+            $expression = Factory::create($token);
 
-            if ($expression->isOperator()) {
+            if ($expression instanceof OperatorContract) {
                 $this->parseOperator($expression, $output, $operators);
-            } elseif ($expression->isParenthesis()) {
+            } elseif ($expression instanceof ParenthesiContract) {
                 $this->parseParenthesis($expression, $output, $operators);
             } else {
                 $output->push($expression);
@@ -82,7 +84,7 @@ class Engine
 
         // validate parenthesises
         while (!$operators->isEmpty() && ($op = $operators->pop())) {
-            if ($op->isParenthesis()) {
+            if ($op instanceof ParenthesiContract) {
                 throw new MismatchParenteshisException('Mismatched Parenthesis');
             }
             $output->push($op);
@@ -124,13 +126,13 @@ class Engine
     }
 
     /**
-     * @param OperatorBase $expression
+     * @param OperatorContract $expression
      * @param Stack $output
      * @param Stack $operators
      */
-    protected function parseOperator(OperatorBase $expression, Stack $output, Stack $operators)
+    protected function parseOperator(OperatorContract $expression, Stack $output, Stack $operators)
     {
-        while (!$operators->isEmpty() && ($end = $operators->top()) && $end->isOperator()) {
+        while (!$operators->isEmpty() && ($end = $operators->top()) && $end instanceof OperatorContract) {
             /** @var OperatorBase $end */
             if (!($expression->isLeftAssoc() && $expression->getPrecedence() <= $end->getPrecedence())
                 && !(!$expression->isLeftAssoc() && $expression->getPrecedence() < $end->getPrecedence())) {
@@ -145,24 +147,24 @@ class Engine
     }
 
     /**
-     * @param Parenthesis $expression
+     * @param ParenthesiContract $expression
      * @param Stack $output
      * @param Stack $operators
      * @throws MismatchParenteshisException
      */
-    protected function parseParenthesis(Parenthesis $expression, Stack $output, Stack $operators)
+    protected function parseParenthesis(ParenthesiContract $expression, Stack $output, Stack $operators)
     {
         if ($expression->isOpen()) {
             $operators->push($expression);
         } else {
             $clean = false;
             while (!$operators->isEmpty() && ($end = $operators->pop())) {
-                if ($end->isParenthesis()) {
+                if ($end instanceof ParenthesiContract) {
                     $clean = true;
                     break;
-                } else {
-                    $output->push($end);
                 }
+
+                $output->push($end);
             }
             if (!$clean) {
                 throw new MismatchParenteshisException('Mismatched Parenthesis');
@@ -176,10 +178,10 @@ class Engine
      */
     public function run(Stack $stack)
     {
-        while (!$stack->isEmpty() && ($operator = $stack->pop()) && $operator->isOperator()) {
+        while (!$stack->isEmpty() && ($operator = $stack->pop()) && $operator instanceof OperatorContract) {
             $value = $operator->operate($stack);
             if (!is_null($value)) {
-                $stack->push(Expression::factory($value));
+                $stack->push(Factory::create($value));
             }
         }
         return isset($operator) ? $operator->render() : $this->render($stack);

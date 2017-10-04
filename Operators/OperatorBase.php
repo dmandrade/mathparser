@@ -15,12 +15,13 @@
 namespace App\MathParser\Operators;
 
 use App\MathParser\Expression;
+use App\MathParser\Contracts\OperatorContract;
 
 /**
  * Class OperatorBase
  * @package App\MathParser\Operators
  */
-abstract class OperatorBase extends Expression
+abstract class OperatorBase extends Expression implements OperatorContract
 {
 
     /**
@@ -47,14 +48,6 @@ abstract class OperatorBase extends Expression
     public function isLeftAssoc()
     {
         return $this->leftAssoc;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isOperator()
-    {
-        return true;
     }
 
 }

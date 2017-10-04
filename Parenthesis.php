@@ -14,49 +14,14 @@
 
 namespace App\MathParser;
 
+use App\MathParser\Contracts\ParenthesiContract;
+
 /**
  * Class Parenthesis
  * @package App\MathParser
  */
-class Parenthesis extends Expression
+class Parenthesis extends Expression implements ParenthesiContract
 {
-
-    /**
-     * @var int
-     */
-    protected $precedence = 6;
-
-    /**
-     * @param Stack $stack
-     */
-    public function operate(Stack $stack)
-    {
-    }
-
-    /**
-     * @return int
-     */
-    public function getPrecedence()
-    {
-        return $this->precedence;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isNoOp()
-    {
-        return true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isParenthesis()
-    {
-        return true;
-    }
-
     /**
      * @return bool
      */
