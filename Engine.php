@@ -83,11 +83,11 @@ class Engine
         }
 
         // validate parenthesises
-        while (!$operators->isEmpty() && ($op = $operators->pop())) {
-            if ($op instanceof ParenthesiContract) {
+        while (!$operators->isEmpty() && ($operator = $operators->pop())) {
+            if ($operator instanceof ParenthesiContract) {
                 throw new MismatchParenteshisException('Mismatched Parenthesis');
             }
-            $output->push($op);
+            $output->push($operator);
         }
 
         return $output;
@@ -139,8 +139,8 @@ class Engine
                 break;
             }
 
-            $el = $operators->isEmpty() ? null : $operators->pop();
-            $output->push($el);
+            $operator = $operators->isEmpty() ? null : $operators->pop();
+            $output->push($operator);
         }
 
         $operators->push($expression);
