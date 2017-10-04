@@ -5,11 +5,11 @@
  *
  *  This file is part of the android project.
  *
- *  @project NomadLog Portal
- *  @file Atan2.php
- *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
- *  @date 03/10/17 at 16:14
- *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ * @project NomadLog Portal
+ * @file Atan2.php
+ * @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ * @date 03/10/17 at 16:14
+ * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators\Arithmetic;
@@ -40,7 +40,7 @@ class Atan2 extends OperatorBase
         //the operate here should always be returning a value alone
         $next = $stack->pop()->operate($stack);
         //create new number
-        $newNumber = new Number(atan2($next,0));
+        $newNumber = new Number(atan2($next, 0));
         return $newNumber->operate($stack);
     }
 

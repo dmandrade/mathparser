@@ -31,6 +31,21 @@ class Engine
     protected $variables = array();
 
     /**
+     * @param $name
+     * @param $value
+     * @return $this
+     */
+    public function registerVariable($name, $value)
+    {
+        if (!is_numeric($value)) {
+            $value = (new Engine)->evaluate($value);
+        }
+        $this->variables[$name] = $value;
+
+        return $this;
+    }
+
+    /**
      * @param $string
      * @return string
      */
@@ -38,24 +53,6 @@ class Engine
     {
         $stack = $this->parse($string);
         return $this->run($stack);
-    }
-
-    /**
-     * @param $string
-     * @return array
-     */
-    protected function tokenize($string)
-    {
-        $parts = preg_split('((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)', $string, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-        $parts = array_map('trim', $parts);
-        foreach ($parts as $key => &$value) {
-            //if this is the first token or we've already had an operator or open parenthesis, this is unary
-            if ($value == '-' && ($key - 1 < 0 || in_array($parts[$key - 1], array('+', '-', '*', '/', '(')))) {
-                $value = 'u';
-            }
-        }
-
-        return $parts;
     }
 
     /**
@@ -92,6 +89,38 @@ class Engine
         }
 
         return $output;
+    }
+
+    /**
+     * @param $string
+     * @return array
+     */
+    protected function tokenize($string)
+    {
+        $parts = preg_split('((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)', $string, null,
+            PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $parts = array_map('trim', $parts);
+        foreach ($parts as $key => &$value) {
+            //if this is the first token or we've already had an operator or open parenthesis, this is unary
+            if ($value == '-' && ($key - 1 < 0 || in_array($parts[$key - 1], array('+', '-', '*', '/', '(')))) {
+                $value = 'u';
+            }
+        }
+
+        return $parts;
+    }
+
+    /**
+     * @param $token
+     * @return int|mixed
+     */
+    protected function extractVariables($token)
+    {
+        if (isset($this->variables[$token])) {
+            return $this->variables[$token];
+        }
+
+        return $token;
     }
 
     /**
@@ -173,32 +202,5 @@ class Engine
         }
 
         throw new CannotRenderException('Cannot render');
-    }
-
-    /**
-     * @param $token
-     * @return int|mixed
-     */
-    protected function extractVariables($token)
-    {
-        if (isset($this->variables[$token])) {
-            return $this->variables[$token];
-        }
-
-        return $token;
-    }
-
-    /**
-     * @param $name
-     * @param $value
-     */
-    public function registerVariable($name, $value)
-    {
-        if(!is_numeric($value)){
-            $value = (new Engine)->evaluate($value);
-        }
-        $this->variables[$name] = $value;
-
-        return $this;
     }
 }

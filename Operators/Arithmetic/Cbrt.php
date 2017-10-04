@@ -5,11 +5,11 @@
  *
  *  This file is part of the android project.
  *
- *  @project NomadLog Portal
- *  @file Cbrt.php
- *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
- *  @date 03/10/17 at 16:15
- *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ * @project NomadLog Portal
+ * @file Cbrt.php
+ * @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ * @date 03/10/17 at 16:15
+ * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators\Arithmetic;
@@ -40,7 +40,7 @@ class Cbrt extends OperatorBase
         //the operate here should always be returning a value alone
         $next = $stack->pop()->operate($stack);
         //create new number
-        $newNumber = new Number(pow($next,1/3));
+        $newNumber = new Number(pow($next, 1 / 3));
         return $newNumber->operate($stack);
     }
 

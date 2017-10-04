@@ -14,21 +14,9 @@
 
 namespace App\MathParser;
 
-use App\MathParser\Operators\Arithmetic\Abs;
-use App\MathParser\Operators\Arithmetic\Addition;
-use App\MathParser\Operators\Arithmetic\Division;
-use App\MathParser\Operators\Arithmetic\Modulus;
-use App\MathParser\Operators\Arithmetic\Multiplication;
-use App\MathParser\Operators\Arithmetic\Power;
-use App\MathParser\Operators\Arithmetic\Subtraction;
-use App\MathParser\Operators\Arithmetic\Unary;
 use App\MathParser\Operators\Comparison\Equal;
-use App\MathParser\Operators\Comparison\GreaterOrEqual;
 use App\MathParser\Operators\Comparison\GreaterThan;
-use App\MathParser\Operators\Comparison\LessOrEqual;
 use App\MathParser\Operators\Comparison\LessThan;
-use App\MathParser\Operators\Comparison\NotEqual;
-use App\MathParser\Operators\Logical\AndOperator;
 use App\MathParser\Operators\Logical\OrOperator;
 
 /**
@@ -37,11 +25,6 @@ use App\MathParser\Operators\Logical\OrOperator;
  */
 abstract class Expression
 {
-
-    /**
-     * @var string|Stack
-     */
-    protected $value = '';
 
     protected static $operators = [
         'App\\MathParser\\Operators\\Logical\\AndOperator',
@@ -82,6 +65,10 @@ abstract class Expression
         'App\\MathParser\\Operators\\Arithmetic\\Tan',
         'App\\MathParser\\Operators\\Arithmetic\\Tanh',
     ];
+    /**
+     * @var string|Stack
+     */
+    protected $value = '';
 
     /**
      * Expression constructor.
@@ -113,15 +100,14 @@ abstract class Expression
             $expression = new Parenthesis($value);
         }
 
-        if(!isset($expression)) {
-            foreach (self::$operators as $operator)
-            {
-                if($operator::SYMBOL == $value){
+        if (!isset($expression)) {
+            foreach (self::$operators as $operator) {
+                if ($operator::SYMBOL == $value) {
                     $expression = new $operator($value);
                 }
             }
 
-            if(!isset($expression)) {
+            if (!isset($expression)) {
                 throw new \InvalidArgumentException('Undefined Value ' . $value);
             }
         }
