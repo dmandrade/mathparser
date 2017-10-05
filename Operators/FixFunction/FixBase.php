@@ -15,6 +15,7 @@
 namespace App\MathParser\Operators\FixFunction;
 
 use App\MathParser\Operators\FunctionBase;
+use App\MathParser\Stack;
 
 /**
  * Class FixBase
@@ -23,6 +24,8 @@ use App\MathParser\Operators\FunctionBase;
 class FixBase extends FunctionBase
 {
     const SYMBOL = 'FixBase';
+
+    protected $fixType = 'base';
 
     /**
      * @return int
@@ -42,6 +45,6 @@ class FixBase extends FunctionBase
         $interval = $parameters[1];
         $medida = $parameters[2];
 
-        return FixFunction::calc($value, $interval, $medida, 'base');
+        return FixFunction::calc($value, $interval, $medida, $this->fixType);
     }
 }

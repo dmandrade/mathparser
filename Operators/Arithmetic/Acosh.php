@@ -32,15 +32,17 @@ class Acosh extends OperatorBase
     protected $precedence = 8;
 
     /**
-     * @param Stack $stack
-     * @return mixed
+     * @var bool
      */
-    public function operate(Stack $stack)
+    protected $onlyOneArgument = true;
+
+    /**
+     * @param $left
+     * @param null $right
+     * @return float|int
+     */
+    public function handle($left, $right = null)
     {
-        //the operate here should always be returning a value alone
-        $next = $stack->pop()->operate($stack);
-        //create new number
-        $newNumber = new Number(acosh($next));
-        return $newNumber->operate($stack);
+        return acosh($left);
     }
 }

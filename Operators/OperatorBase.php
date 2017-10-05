@@ -14,8 +14,10 @@
 
 namespace App\MathParser\Operators;
 
+use App\MathParser\Contracts\ExpressionContract;
 use App\MathParser\Contracts\OperatorContract;
 use App\MathParser\Expression;
+use App\MathParser\Stack;
 
 /**
  * Class OperatorBase
@@ -28,6 +30,16 @@ abstract class OperatorBase extends Expression implements OperatorContract
      * @var int
      */
     protected $precedence = 0;
+
+    /**
+     * @var bool
+     */
+    protected $onlyOneArgument = false;
+
+    /**
+     * @var bool
+     */
+    protected $returnVarObject = false;
 
     /**
      * @var bool
@@ -48,5 +60,40 @@ abstract class OperatorBase extends Expression implements OperatorContract
     public function isLeftAssoc()
     {
         return $this->leftAssoc;
+    }
+
+    /**
+     * @param $left
+     * @param null $right
+     * @return mixed
+     */
+    protected abstract function handle($left, $right = null);
+
+    /**
+     * @param Stack $stack
+     * @return mixed
+     */
+    public function operate(Stack $stack)
+    {
+        $right = null;
+        $first = $stack->pop()->operate($stack);
+
+        if(!$this->returnVarObject && $first instanceof ExpressionContract)
+        {
+            $first = $first->getValue();
+        }
+
+        $left = $first;
+
+        if(!$this->onlyOneArgument) {
+            $second = $stack->pop()->operate($stack);
+            if (!$this->returnVarObject && $second instanceof ExpressionContract) {
+                $second = $second->getValue();
+            }
+            $right = $left;
+            $left = $second;
+        }
+
+        return $this->handle($left, $right);
     }
 }

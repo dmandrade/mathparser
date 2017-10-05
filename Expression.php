@@ -44,4 +44,17 @@ abstract class Expression implements ExpressionContract
     {
         return $this->value;
     }
+
+    /**
+     * @return int
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    public function __toString()
+    {
+        return $this->value;
+    }
 }

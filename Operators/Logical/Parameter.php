@@ -32,14 +32,20 @@ class Parameter extends OperatorBase
     protected $precedence = 1;
 
     /**
+     * @var bool
+     */
+    protected $returnVarObject = true;
+
+    /**
      * @param Stack $stack
      * @return int
      */
-    public function operate(Stack $stack)
+    public function handle($left, $right = null)
     {
-        $left = $this->getValues($stack->pop()->operate($stack));
-        $right = $this->getValues($stack->pop()->operate($stack));
-        return array_merge($right, $left);
+        $left = $this->getValues($left);
+        $right = $this->getValues($right);
+
+        return array_merge($left, $right);
     }
 
     private function getValues($value)

@@ -14,34 +14,16 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
-use App\MathParser\Operators\FunctionBase;
-
 /**
  * Class FixMax
  * @package App\MathParser\Operators\FixFunction
  */
-class FixMax extends FunctionBase
+class FixMax extends FixBase
 {
     const SYMBOL = 'FixMax';
 
     /**
-     * @return int
+     * @var string
      */
-    protected function maxArguments()
-    {
-        return 3;
-    }
-
-    /**
-     * @param array $parameters
-     * @return mixed
-     */
-    protected function handle(array $parameters)
-    {
-        $value = $parameters[0];
-        $interval = $parameters[1];
-        $medida = $parameters[2];
-
-        return FixFunction::calc($value, $interval, $medida, 'max');
-    }
+    protected $fixType = 'max';
 }

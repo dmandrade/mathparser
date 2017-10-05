@@ -32,15 +32,17 @@ class Unary extends OperatorBase
     protected $precedence = 7;
 
     /**
-     * @param Stack $stack
+     * @var bool
+     */
+    protected $onlyOneArgument = true;
+
+    /**
+     * @param $left
+     * @param null $right
      * @return mixed
      */
-    public function operate(Stack $stack)
+    public function handle($left, $right = null)
     {
-        //the operate here should always be returning a value alone
-        $next = $stack->pop()->operate($stack);
-        //create new number that's negative
-        $unaryNumber = new Number(-$next);
-        return $unaryNumber->operate($stack);
+        return -$left;
     }
 }

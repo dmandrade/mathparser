@@ -14,6 +14,7 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
+use App\MathParser\Contracts\VariableContract;
 use App\MathParser\Exceptions\FixFunctionException;
 
 /**
@@ -29,15 +30,22 @@ abstract class FixFunction
     private static $posX;
 
     /**
-     * @param $value
-     * @param null $interval
-     * @param null $medida
+     * @param mixed $value
+     * @param mixed $interval
+     * @param mixed $medida
      * @param string $type
      * @return float|int|mixed
      */
     static public function calc($value, $interval = null, $medida = null, $type = 'base')
     {
         $varName = 'base';
+        if($value instanceof VariableContract){
+            $varName = $value->getName();
+            $value = $value->getValue();
+        }
+        if($medida instanceof VariableContract){
+            $medida = $medida->getValue();
+        }
         $interval = $interval * $medida;
         $posX = self::$posX;
 
@@ -45,10 +53,10 @@ abstract class FixFunction
     }
 
     /**
-     * @param $value
-     * @param $curPos
-     * @param $interval
-     * @param $type
+     * @param mixed $value
+     * @param mixed $curPos
+     * @param mixed $interval
+     * @param string $type
      * @param string $varName
      * @return float|int|mixed
      * @throws FixFunctionException

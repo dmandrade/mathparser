@@ -31,13 +31,12 @@ class Power extends OperatorBase
     protected $precedence = 6;
 
     /**
-     * @param Stack $stack
-     * @return mixed
+     * @param $left
+     * @param null $right
+     * @return number
      */
-    public function operate(Stack $stack)
+    public function handle($left, $right = null)
     {
-        $left = $stack->pop()->operate($stack);
-        $right = $stack->pop()->operate($stack);
         return pow($left, $right);
     }
 }

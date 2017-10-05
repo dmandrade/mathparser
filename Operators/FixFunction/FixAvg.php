@@ -14,34 +14,16 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
-use App\MathParser\Operators\FunctionBase;
-
 /**
  * Class FixAvg
  * @package App\MathParser\Operators\FixFunction
  */
-class FixAvg extends FunctionBase
+class FixAvg extends FixBase
 {
     const SYMBOL = 'FixAvg';
 
     /**
-     * @return int
+     * @var string
      */
-    protected function maxArguments()
-    {
-        return 3;
-    }
-
-    /**
-     * @param array $parameters
-     * @return mixed
-     */
-    protected function handle(array $parameters)
-    {
-        $value = $parameters[0];
-        $interval = $parameters[1];
-        $medida = $parameters[2];
-
-        return FixFunction::calc($value, $interval, $medida, 'avg');
-    }
+    protected $fixType = 'avg';
 }

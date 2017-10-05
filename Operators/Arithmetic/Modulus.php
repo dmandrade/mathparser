@@ -31,13 +31,12 @@ class Modulus extends OperatorBase
     protected $precedence = 5;
 
     /**
-     * @param Stack $stack
+     * @param $left
+     * @param null $right
      * @return int
      */
-    public function operate(Stack $stack)
+    public function handle($left, $right = null)
     {
-        $left = $stack->pop()->operate($stack);
-        $right = $stack->pop()->operate($stack);
-        return $right % $left;
+        return $left % $right;
     }
 }

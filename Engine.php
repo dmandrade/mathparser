@@ -125,7 +125,10 @@ class Engine
     protected function extractVariables($token)
     {
         if (isset($this->variables[$token])) {
-            return $this->variables[$token];
+            $var = new Variable($this->variables[$token]);
+            $var->setName($token);
+
+            return $var;
         }
 
         return $token;

@@ -32,14 +32,12 @@ class GreaterThan extends OperatorBase
     protected $precedence = 2;
 
     /**
-     * @param Stack $stack
+     * @param $left
+     * @param null $right
      * @return int
      */
-    public function operate(Stack $stack)
+    public function handle($left, $right = null)
     {
-        $right = $stack->pop()->operate($stack);
-        $left = $stack->pop()->operate($stack);
-
         return (int)($left > $right);
     }
 }

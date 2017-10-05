@@ -14,6 +14,7 @@
 
 namespace App\MathParser\Operators\Arithmetic;
 
+use App\MathParser\Contracts\ExpressionContract;
 use App\MathParser\Operators\FunctionBase;
 
 /**
@@ -43,6 +44,19 @@ class Pow extends FunctionBase
      */
     protected function handle(array $parameters)
     {
-        return call_user_func_array('pow', $parameters);
+        $left = $parameters[0];
+        $right = $parameters[1];
+
+        if($left instanceof ExpressionContract)
+        {
+            $left = $left->getValue();
+        }
+
+        if($right instanceof ExpressionContract)
+        {
+            $right = $right->getValue();
+        }
+
+        return pow($left, $right);
     }
 }

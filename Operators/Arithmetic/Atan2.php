@@ -14,7 +14,9 @@
 
 namespace App\MathParser\Operators\Arithmetic;
 
+use App\MathParser\Contracts\ExpressionContract;
 use App\MathParser\Number;
+use App\MathParser\Operators\FunctionBase;
 use App\MathParser\Operators\OperatorBase;
 use App\MathParser\Stack;
 
@@ -22,7 +24,7 @@ use App\MathParser\Stack;
  * Class Atan2
  * @package App\MathParser\Operators\Arithmetic
  */
-class Atan2 extends OperatorBase
+class Atan2 extends FunctionBase
 {
     const SYMBOL = 'Math.atan2';
 
@@ -32,15 +34,32 @@ class Atan2 extends OperatorBase
     protected $precedence = 8;
 
     /**
-     * @param Stack $stack
+     * @return int
+     */
+    protected function maxArguments()
+    {
+        return 2;
+    }
+
+    /**
+     * @param array $parameters
      * @return mixed
      */
-    public function operate(Stack $stack)
+    protected function handle(array $parameters)
     {
-        //the operate here should always be returning a value alone
-        $next = $stack->pop()->operate($stack);
-        //create new number
-        $newNumber = new Number(atan2($next, 0));
-        return $newNumber->operate($stack);
+        $left = (float) $parameters[0];
+        $right = (float) $parameters[1];
+
+        if($left instanceof ExpressionContract)
+        {
+            $left = $left->getValue();
+        }
+
+        if($right instanceof ExpressionContract)
+        {
+            $right = $right->getValue();
+        }
+
+        return atan2($left, $right);
     }
 }

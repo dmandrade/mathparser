@@ -28,4 +28,9 @@ interface ExpressionContract
      * @return string
      */
     public function render();
+
+    /**
+     * @return int
+     */
+    public function getValue();
 }

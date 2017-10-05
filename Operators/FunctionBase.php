@@ -23,8 +23,35 @@ use App\MathParser\Stack;
  * Class FunctionBase
  * @package App\MathParser\Operators
  */
-abstract class FunctionBase extends OperatorBase implements OperatorContract
+abstract class FunctionBase extends Expression implements OperatorContract
 {
+
+    /**
+     * @var int
+     */
+    protected $precedence = 0;
+
+    /**
+     * @var bool
+     */
+    protected $leftAssoc = true;
+
+    /**
+     * @return int
+     */
+    public function getPrecedence()
+    {
+        return $this->precedence;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLeftAssoc()
+    {
+        return $this->leftAssoc;
+    }
+
     /**
      * @return int
      */

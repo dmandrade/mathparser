@@ -14,6 +14,9 @@
 
 namespace App\MathParser;
 
+use App\MathParser\Contracts\ExpressionContract;
+use App\MathParser\Contracts\VariableContract;
+
 /**
  * Class Factory
  * @package App\MathParser
@@ -69,8 +72,11 @@ final class Factory
     public static function create($value)
     {
 
+        if ($value instanceof ExpressionContract) {
+            return $value;
+        }
 
-        if ($value instanceof self) {
+        if ($value instanceof VariableContract) {
             return $value;
         }
 
