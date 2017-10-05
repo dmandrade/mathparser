@@ -102,7 +102,7 @@ class Engine
     protected function tokenize($string)
     {
         $parts = preg_split(
-            '((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)',
+            '((\d+\.?\d+|\+|-|\(|\)|\*|/|\,)|\s+)',
             $string,
             null,
             PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE

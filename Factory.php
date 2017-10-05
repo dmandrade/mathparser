@@ -24,6 +24,7 @@ final class Factory
     protected static $operators = [
         'App\\MathParser\\Operators\\Logical\\AndOperator',
         'App\\MathParser\\Operators\\Logical\\OrOperator',
+        'App\\MathParser\\Operators\\Logical\\Parameter',
         'App\\MathParser\\Operators\\Comparison\\GreaterThan',
         'App\\MathParser\\Operators\\Comparison\\GreaterOrEqual',
         'App\\MathParser\\Operators\\Comparison\\LessOrEqual',
@@ -59,6 +60,10 @@ final class Factory
         'App\\MathParser\\Operators\\Arithmetic\\Sqrt',
         'App\\MathParser\\Operators\\Arithmetic\\Tan',
         'App\\MathParser\\Operators\\Arithmetic\\Tanh',
+        'App\\MathParser\\Operators\\FixFunction\\FixBase',
+        'App\\MathParser\\Operators\\FixFunction\\FixMax',
+        'App\\MathParser\\Operators\\FixFunction\\FixMin',
+        'App\\MathParser\\Operators\\FixFunction\\FixAvg',
     ];
 
     public static function create($value)

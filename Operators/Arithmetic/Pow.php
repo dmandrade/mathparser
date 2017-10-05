@@ -14,14 +14,13 @@
 
 namespace App\MathParser\Operators\Arithmetic;
 
-use App\MathParser\Operators\OperatorBase;
-use App\MathParser\Stack;
+use App\MathParser\Operators\FunctionBase;
 
 /**
  * Class Pow
  * @package App\MathParser\Operators\Arithmetic
  */
-class Pow extends OperatorBase
+class Pow extends FunctionBase
 {
     const SYMBOL = 'Math.pow';
 
@@ -31,13 +30,19 @@ class Pow extends OperatorBase
     protected $precedence = 8;
 
     /**
-     * @param Stack $stack
+     * @return int
+     */
+    protected function maxArguments()
+    {
+        return 2;
+    }
+
+    /**
+     * @param array $parameters
      * @return mixed
      */
-    public function operate(Stack $stack)
+    protected function handle(array $parameters)
     {
-        $left = $stack->pop()->operate($stack);
-        $right = $stack->pop()->operate($stack);
-        return pow($left, $right);
+        return call_user_func_array('pow', $parameters);
     }
 }
