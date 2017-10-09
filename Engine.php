@@ -47,6 +47,14 @@ class Engine
         return $this;
     }
 
+    public function registerVariables(array $vars)
+    {
+        foreach ($vars as $name => $value){
+            $this->registerVariable($name, $value);
+        }
+        return $this;
+    }
+
     /**
      * @param $string
      * @return string
