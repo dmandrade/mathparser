@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Sqrt
  * @package App\MathParser\Operators\Arithmetic
  */
-class Sqrt extends OperatorBase
-{
+class Sqrt extends OperatorBase {
     const SYMBOL = 'Math.sqrt';
 
     /**
@@ -39,10 +38,10 @@ class Sqrt extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return sqrt($left);
+    public function handle( $left, $right = null ) {
+        return sqrt( $left );
     }
 }

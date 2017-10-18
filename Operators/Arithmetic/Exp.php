@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Exp
  * @package App\MathParser\Operators\Arithmetic
  */
-class Exp extends OperatorBase
-{
+class Exp extends OperatorBase {
     const SYMBOL = 'Math.exp';
 
     /**
@@ -39,10 +38,10 @@ class Exp extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return exp($left);
+    public function handle( $left, $right = null ) {
+        return exp( $left );
     }
 }

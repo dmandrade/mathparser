@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class Division
  * @package App\MathParser\Operators\Arithmetic
  */
-class Division extends OperatorBase
-{
+class Division extends OperatorBase {
     const SYMBOL = '/';
 
     /**
@@ -33,10 +32,14 @@ class Division extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float|int
      */
-    public function handle($left, $right = null)
-    {
+    public function handle( $left, $right = null ) {
+        if ( $right == 0 ) {
+            return 0;
+        }
+
         return $left / $right;
     }
 }

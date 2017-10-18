@@ -21,8 +21,7 @@
 
 namespace App\MathParser\Contracts;
 
-interface ParenthesiContract
-{
+interface ParenthesiContract {
     /**
      * @return boolean
      */

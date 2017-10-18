@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class Modulus
  * @package App\MathParser\Operators\Arithmetic
  */
-class Modulus extends OperatorBase
-{
+class Modulus extends OperatorBase {
     const SYMBOL = '%';
 
     /**
@@ -33,10 +32,10 @@ class Modulus extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return int
      */
-    public function handle($left, $right = null)
-    {
+    public function handle( $left, $right = null ) {
         return $left % $right;
     }
 }

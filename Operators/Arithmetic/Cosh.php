@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Cosh
  * @package App\MathParser\Operators\Arithmetic
  */
-class Cosh extends OperatorBase
-{
+class Cosh extends OperatorBase {
     const SYMBOL = 'Math.cosh';
 
     /**
@@ -39,10 +38,10 @@ class Cosh extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return cosh($left);
+    public function handle( $left, $right = null ) {
+        return cosh( $left );
     }
 }

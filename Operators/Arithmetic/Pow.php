@@ -21,8 +21,7 @@ use App\MathParser\Operators\FunctionBase;
  * Class Pow
  * @package App\MathParser\Operators\Arithmetic
  */
-class Pow extends FunctionBase
-{
+class Pow extends FunctionBase {
     const SYMBOL = 'Math.pow';
 
     /**
@@ -33,30 +32,27 @@ class Pow extends FunctionBase
     /**
      * @return int
      */
-    protected function maxArguments()
-    {
+    protected function maxArguments() {
         return 2;
     }
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
-    protected function handle(array $parameters)
-    {
-        $left = $parameters[0];
+    protected function handle( array $parameters ) {
+        $left  = $parameters[0];
         $right = $parameters[1];
 
-        if($left instanceof ExpressionContract)
-        {
+        if ( $left instanceof ExpressionContract ) {
             $left = $left->getValue();
         }
 
-        if($right instanceof ExpressionContract)
-        {
+        if ( $right instanceof ExpressionContract ) {
             $right = $right->getValue();
         }
 
-        return pow($left, $right);
+        return pow( $left, $right );
     }
 }

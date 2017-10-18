@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class Addition
  * @package App\MathParser\Operators\Arithmetic
  */
-class Addition extends OperatorBase
-{
+class Addition extends OperatorBase {
     const SYMBOL = '+';
 
     /**
@@ -33,10 +32,10 @@ class Addition extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return mixed
      */
-    public function handle($left, $right = null)
-    {
+    public function handle( $left, $right = null ) {
         return $left + $right;
     }
 }

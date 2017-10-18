@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Sin
  * @package App\MathParser\Operators\Arithmetic
  */
-class Sin extends OperatorBase
-{
+class Sin extends OperatorBase {
     const SYMBOL = 'Math.sin';
 
     /**
@@ -39,10 +38,10 @@ class Sin extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return sin($left);
+    public function handle( $left, $right = null ) {
+        return sin( $left );
     }
 }

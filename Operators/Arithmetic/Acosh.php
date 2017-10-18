@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Acosh
  * @package App\MathParser\Operators\Arithmetic
  */
-class Acosh extends OperatorBase
-{
+class Acosh extends OperatorBase {
     const SYMBOL = 'Math.acosh';
 
     /**
@@ -39,10 +38,10 @@ class Acosh extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float|int
      */
-    public function handle($left, $right = null)
-    {
-        return acosh($left);
+    public function handle( $left, $right = null ) {
+        return acosh( $left );
     }
 }

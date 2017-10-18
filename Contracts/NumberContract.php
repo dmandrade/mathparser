@@ -21,8 +21,7 @@
 
 namespace App\MathParser\Contracts;
 
-interface NumberContract
-{
+interface NumberContract {
 
     /**
      * @return mixed

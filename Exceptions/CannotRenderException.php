@@ -21,7 +21,6 @@
 
 namespace App\MathParser\Exceptions;
 
-class CannotRenderException extends \Exception
-{
+class CannotRenderException extends \Exception {
 
 }

@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class GreaterOrEqual
  * @package App\MathParser\Operators\Comparison
  */
-class GreaterOrEqual extends OperatorBase
-{
+class GreaterOrEqual extends OperatorBase {
     const SYMBOL = '>=';
 
     /**
@@ -38,10 +37,10 @@ class GreaterOrEqual extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return int
      */
-    public function handle($left, $right = null)
-    {
-        return (int)($left >= $right);
+    public function handle( $left, $right = null ) {
+        return (int) ( $left >= $right );
     }
 }

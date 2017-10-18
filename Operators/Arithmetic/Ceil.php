@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Ceil
  * @package App\MathParser\Operators\Arithmetic
  */
-class Ceil extends OperatorBase
-{
+class Ceil extends OperatorBase {
     const SYMBOL = 'Math.ceil';
 
     /**
@@ -39,10 +38,10 @@ class Ceil extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return ceil($left);
+    public function handle( $left, $right = null ) {
+        return ceil( $left );
     }
 }

@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Round
  * @package App\MathParser\Operators\Arithmetic
  */
-class Round extends OperatorBase
-{
+class Round extends OperatorBase {
     const SYMBOL = 'Math.round';
 
     /**
@@ -39,10 +38,10 @@ class Round extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return round($left, 0, PHP_ROUND_HALF_DOWN);
+    public function handle( $left, $right = null ) {
+        return round( $left, 0, PHP_ROUND_HALF_DOWN );
     }
 }

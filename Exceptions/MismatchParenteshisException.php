@@ -21,7 +21,6 @@
 
 namespace App\MathParser\Exceptions;
 
-class MismatchParenteshisException extends \Exception
-{
+class MismatchParenteshisException extends \Exception {
 
 }

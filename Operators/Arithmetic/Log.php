@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Log
  * @package App\MathParser\Operators\Arithmetic
  */
-class Log extends OperatorBase
-{
+class Log extends OperatorBase {
     const SYMBOL = 'Math.log';
 
     /**
@@ -39,10 +38,10 @@ class Log extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return log($left);
+    public function handle( $left, $right = null ) {
+        return log( $left );
     }
 }

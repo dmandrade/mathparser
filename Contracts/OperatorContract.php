@@ -23,8 +23,7 @@ namespace App\MathParser\Contracts;
 
 use App\MathParser\Stack;
 
-interface OperatorContract extends ExpressionContract
-{
+interface OperatorContract extends ExpressionContract {
     /**
      * @return int
      */
@@ -32,9 +31,10 @@ interface OperatorContract extends ExpressionContract
 
     /**
      * @param Stack $stack
+     *
      * @return mixed
      */
-    public function operate(Stack $stack);
+    public function operate( Stack $stack );
 
     /**
      * @return bool

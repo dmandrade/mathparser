@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class Power
  * @package App\MathParser\Operators\Arithmetic
  */
-class Power extends OperatorBase
-{
+class Power extends OperatorBase {
     const SYMBOL = '^';
 
     /**
@@ -33,10 +32,10 @@ class Power extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return number
      */
-    public function handle($left, $right = null)
-    {
-        return pow($left, $right);
+    public function handle( $left, $right = null ) {
+        return pow( $left, $right );
     }
 }

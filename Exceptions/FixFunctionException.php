@@ -5,11 +5,11 @@
  *
  *  This file is part of the android project.
  *
- *  @project NomadLog Portal
- *  @file FixFunctionException.php
- *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
- *  @date 05/10/17 at 13:48
- *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ * @project NomadLog Portal
+ * @file FixFunctionException.php
+ * @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ * @date 05/10/17 at 13:48
+ * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 /**
@@ -21,7 +21,6 @@
 
 namespace App\MathParser\Exceptions;
 
-class FixFunctionException extends \Exception
-{
+class FixFunctionException extends \Exception {
 
 }

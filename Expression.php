@@ -20,8 +20,7 @@ use App\MathParser\Contracts\ExpressionContract;
  * Class Expression
  * @package App\MathParser
  */
-abstract class Expression implements ExpressionContract
-{
+abstract class Expression implements ExpressionContract {
 
     /**
      * @var string|Stack
@@ -30,31 +29,28 @@ abstract class Expression implements ExpressionContract
 
     /**
      * Expression constructor.
+     *
      * @param $value
      */
-    public function __construct($value)
-    {
+    public function __construct( $value ) {
         $this->value = $value;
     }
 
     /**
      * @return string
      */
-    public function render()
-    {
+    public function render() {
         return $this->value;
     }
 
     /**
      * @return int
      */
-    public function getValue()
-    {
+    public function getValue() {
         return $this->value;
     }
 
-    public function __toString()
-    {
+    public function __toString() {
         return $this->value;
     }
 }

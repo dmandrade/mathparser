@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class OrOperator
  * @package App\MathParser\Operators\Logical
  */
-class OrOperator extends OperatorBase
-{
+class OrOperator extends OperatorBase {
 
     const SYMBOL = 'OR';
 
@@ -34,10 +33,10 @@ class OrOperator extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return int
      */
-    public function handle($left, $right = null)
-    {
-        return (int)($left || $right);
+    public function handle( $left, $right = null ) {
+        return (int) ( $left || $right );
     }
 }

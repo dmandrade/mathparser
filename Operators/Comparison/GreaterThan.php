@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class GreaterThan
  * @package App\MathParser\Operators\Comparison
  */
-class GreaterThan extends OperatorBase
-{
+class GreaterThan extends OperatorBase {
 
     const SYMBOL = '>';
 
@@ -34,10 +33,10 @@ class GreaterThan extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return int
      */
-    public function handle($left, $right = null)
-    {
-        return (int)($left > $right);
+    public function handle( $left, $right = null ) {
+        return (int) ( $left > $right );
     }
 }

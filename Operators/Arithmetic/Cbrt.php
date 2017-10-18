@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Cbrt
  * @package App\MathParser\Operators\Arithmetic
  */
-class Cbrt extends OperatorBase
-{
+class Cbrt extends OperatorBase {
     const SYMBOL = 'Math.cbrt';
 
     /**
@@ -39,10 +38,10 @@ class Cbrt extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return number
      */
-    public function handle($left, $right = null)
-    {
-        return pow($left, 1 / 3);
+    public function handle( $left, $right = null ) {
+        return pow( $left, 1 / 3 );
     }
 }

@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Abs
  * @package App\MathParser\Operators\Arithmetic
  */
-class Abs extends OperatorBase
-{
+class Abs extends OperatorBase {
     const SYMBOL = 'Math.abs';
 
     /**
@@ -39,10 +38,10 @@ class Abs extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return number
      */
-    public function handle($left, $right = null)
-    {
-        return abs($left);
+    public function handle( $left, $right = null ) {
+        return abs( $left );
     }
 }

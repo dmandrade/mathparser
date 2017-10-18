@@ -21,8 +21,7 @@
 
 namespace App\MathParser\Contracts;
 
-interface ExpressionContract
-{
+interface ExpressionContract {
 
     /**
      * @return string

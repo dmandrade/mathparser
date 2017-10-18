@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class NotEqual
  * @package App\MathParser\Operators\Comparison
  */
-class NotEqual extends OperatorBase
-{
+class NotEqual extends OperatorBase {
 
     const SYMBOL = '!=';
 
@@ -34,10 +33,10 @@ class NotEqual extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return int
      */
-    public function handle($left, $right = null)
-    {
-        return (int)($left != $right);
+    public function handle( $left, $right = null ) {
+        return (int) ( $left != $right );
     }
 }

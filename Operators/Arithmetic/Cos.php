@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Cos
  * @package App\MathParser\Operators\Arithmetic
  */
-class Cos extends OperatorBase
-{
+class Cos extends OperatorBase {
     const SYMBOL = 'Math.cos';
 
     /**
@@ -39,10 +38,10 @@ class Cos extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return cos($left);
+    public function handle( $left, $right = null ) {
+        return cos( $left );
     }
 }

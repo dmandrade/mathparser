@@ -20,14 +20,12 @@ use App\MathParser\Contracts\NumberContract;
  * Class Number
  * @package App\MathParser
  */
-class Number extends Expression implements NumberContract
-{
+class Number extends Expression implements NumberContract {
 
     /**
      * @return string
      */
-    public function operate()
-    {
+    public function operate() {
         return $this->value;
     }
 }

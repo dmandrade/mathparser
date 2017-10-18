@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class AndOperator
  * @package App\MathParser\Operators\Logical
  */
-class AndOperator extends OperatorBase
-{
+class AndOperator extends OperatorBase {
 
     const SYMBOL = 'AND';
 
@@ -34,10 +33,10 @@ class AndOperator extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return int
      */
-    public function handle($left, $right = null)
-    {
-        return (int)($left && $right);
+    public function handle( $left, $right = null ) {
+        return (int) ( $left && $right );
     }
 }

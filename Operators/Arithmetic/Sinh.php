@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Sinh
  * @package App\MathParser\Operators\Arithmetic
  */
-class Sinh extends OperatorBase
-{
+class Sinh extends OperatorBase {
     const SYMBOL = 'Math.sinh';
 
     /**
@@ -39,10 +38,10 @@ class Sinh extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return sinh($left);
+    public function handle( $left, $right = null ) {
+        return sinh( $left );
     }
 }

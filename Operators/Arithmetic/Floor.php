@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Floor
  * @package App\MathParser\Operators\Arithmetic
  */
-class Floor extends OperatorBase
-{
+class Floor extends OperatorBase {
     const SYMBOL = 'Math.floor';
 
     /**
@@ -39,10 +38,10 @@ class Floor extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return floor($left);
+    public function handle( $left, $right = null ) {
+        return floor( $left );
     }
 }

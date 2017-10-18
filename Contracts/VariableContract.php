@@ -5,11 +5,11 @@
  *
  *  This file is part of the android project.
  *
- *  @project NomadLog Portal
- *  @file VariableContract.php
- *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
- *  @date 04/10/17 at 17:12
- *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ * @project NomadLog Portal
+ * @file VariableContract.php
+ * @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ * @date 04/10/17 at 17:12
+ * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 /**
@@ -21,8 +21,7 @@
 
 namespace App\MathParser\Contracts;
 
-interface VariableContract extends ExpressionContract
-{
+interface VariableContract extends ExpressionContract {
 
     /**
      * @return mixed
@@ -36,7 +35,8 @@ interface VariableContract extends ExpressionContract
 
     /**
      * @param $name
+     *
      * @return mixed
      */
-    public function setName($name);
+    public function setName( $name );
 }

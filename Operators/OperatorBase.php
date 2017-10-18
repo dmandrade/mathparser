@@ -23,8 +23,7 @@ use App\MathParser\Stack;
  * Class OperatorBase
  * @package App\MathParser\Operators
  */
-abstract class OperatorBase extends Expression implements OperatorContract
-{
+abstract class OperatorBase extends Expression implements OperatorContract {
 
     /**
      * @var int
@@ -49,51 +48,49 @@ abstract class OperatorBase extends Expression implements OperatorContract
     /**
      * @return int
      */
-    public function getPrecedence()
-    {
+    public function getPrecedence() {
         return $this->precedence;
     }
 
     /**
      * @return bool
      */
-    public function isLeftAssoc()
-    {
+    public function isLeftAssoc() {
         return $this->leftAssoc;
     }
 
     /**
-     * @param $left
-     * @param null $right
-     * @return mixed
-     */
-    protected abstract function handle($left, $right = null);
-
-    /**
      * @param Stack $stack
+     *
      * @return mixed
      */
-    public function operate(Stack $stack)
-    {
+    public function operate( Stack $stack ) {
         $right = null;
-        $first = $stack->pop()->operate($stack);
+        $first = $stack->pop()->operate( $stack );
 
-        if(!$this->returnVarObject && $first instanceof ExpressionContract)
-        {
+        if ( ! $this->returnVarObject && $first instanceof ExpressionContract ) {
             $first = $first->getValue();
         }
 
         $left = $first;
 
-        if(!$this->onlyOneArgument) {
-            $second = $stack->pop()->operate($stack);
-            if (!$this->returnVarObject && $second instanceof ExpressionContract) {
+        if ( ! $this->onlyOneArgument ) {
+            $second = $stack->pop()->operate( $stack );
+            if ( ! $this->returnVarObject && $second instanceof ExpressionContract ) {
                 $second = $second->getValue();
             }
             $right = $left;
-            $left = $second;
+            $left  = $second;
         }
 
-        return $this->handle($left, $right);
+        return $this->handle( $left, $right );
     }
+
+    /**
+     * @param $left
+     * @param null $right
+     *
+     * @return mixed
+     */
+    protected abstract function handle( $left, $right = null );
 }

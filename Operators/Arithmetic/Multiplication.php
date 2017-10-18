@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class Multiplication
  * @package App\MathParser\Operators\Arithmetic
  */
-class Multiplication extends OperatorBase
-{
+class Multiplication extends OperatorBase {
     const SYMBOL = '*';
 
     /**
@@ -33,10 +32,10 @@ class Multiplication extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return mixed
      */
-    public function handle($left, $right = null)
-    {
+    public function handle( $left, $right = null ) {
         return $left * $right;
     }
 }

@@ -21,8 +21,7 @@ use App\MathParser\Stack;
  * Class Subtraction
  * @package App\MathParser\Operators\Arithmetic
  */
-class Subtraction extends OperatorBase
-{
+class Subtraction extends OperatorBase {
 
     const SYMBOL = '-';
 
@@ -34,10 +33,10 @@ class Subtraction extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return null
      */
-    public function handle($left, $right = null)
-    {
+    public function handle( $left, $right = null ) {
         return $left - $right;
     }
 }

@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Tanh
  * @package App\MathParser\Operators\Arithmetic
  */
-class Tanh extends OperatorBase
-{
+class Tanh extends OperatorBase {
     const SYMBOL = 'Math.tanh';
 
     /**
@@ -39,10 +38,10 @@ class Tanh extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return float
      */
-    public function handle($left, $right = null)
-    {
-        return tanh($left);
+    public function handle( $left, $right = null ) {
+        return tanh( $left );
     }
 }

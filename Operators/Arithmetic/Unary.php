@@ -22,8 +22,7 @@ use App\MathParser\Stack;
  * Class Unary
  * @package App\MathParser\Operators\Arithmetic
  */
-class Unary extends OperatorBase
-{
+class Unary extends OperatorBase {
     const SYMBOL = 'u';
 
     /**
@@ -39,10 +38,10 @@ class Unary extends OperatorBase
     /**
      * @param $left
      * @param null $right
+     *
      * @return mixed
      */
-    public function handle($left, $right = null)
-    {
-        return -$left;
+    public function handle( $left, $right = null ) {
+        return - $left;
     }
 }

@@ -24,8 +24,7 @@ use App\MathParser\Stack;
  * Class Atan2
  * @package App\MathParser\Operators\Arithmetic
  */
-class Atan2 extends FunctionBase
-{
+class Atan2 extends FunctionBase {
     const SYMBOL = 'Math.atan2';
 
     /**
@@ -36,30 +35,27 @@ class Atan2 extends FunctionBase
     /**
      * @return int
      */
-    protected function maxArguments()
-    {
+    protected function maxArguments() {
         return 2;
     }
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
-    protected function handle(array $parameters)
-    {
-        $left = (float) $parameters[0];
+    protected function handle( array $parameters ) {
+        $left  = (float) $parameters[0];
         $right = (float) $parameters[1];
 
-        if($left instanceof ExpressionContract)
-        {
+        if ( $left instanceof ExpressionContract ) {
             $left = $left->getValue();
         }
 
-        if($right instanceof ExpressionContract)
-        {
+        if ( $right instanceof ExpressionContract ) {
             $right = $right->getValue();
         }
 
-        return atan2($left, $right);
+        return atan2( $left, $right );
     }
 }

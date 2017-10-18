@@ -20,13 +20,11 @@ use App\MathParser\Contracts\ParenthesiContract;
  * Class Parenthesis
  * @package App\MathParser
  */
-class Parenthesis extends Expression implements ParenthesiContract
-{
+class Parenthesis extends Expression implements ParenthesiContract {
     /**
      * @return bool
      */
-    public function isOpen()
-    {
+    public function isOpen() {
         return $this->value == '(';
     }
 }
