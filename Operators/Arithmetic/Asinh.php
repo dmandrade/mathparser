@@ -14,9 +14,7 @@
 
 namespace App\MathParser\Operators\Arithmetic;
 
-use App\MathParser\Number;
 use App\MathParser\Operators\OperatorBase;
-use App\MathParser\Stack;
 
 /**
  * Class Asinh

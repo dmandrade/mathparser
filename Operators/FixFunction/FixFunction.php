@@ -52,20 +52,6 @@ abstract class FixFunction {
     }
 
     /**
-     * @param array $buffer
-     */
-    public static function setBuffer( array $buffer ) {
-        self::$valueBuffer = $buffer;
-    }
-
-    /**
-     * @param $posX
-     */
-    public static function setPosX( $posX ) {
-        self::$posX = $posX;
-    }
-
-    /**
      * @param mixed $value
      * @param mixed $curPos
      * @param mixed $interval
@@ -135,5 +121,19 @@ abstract class FixFunction {
         }
 
         return $result;
+    }
+
+    /**
+     * @param array $buffer
+     */
+    public static function setBuffer( array $buffer ) {
+        self::$valueBuffer = $buffer;
+    }
+
+    /**
+     * @param $posX
+     */
+    public static function setPosX( $posX ) {
+        self::$posX = $posX;
     }
 }

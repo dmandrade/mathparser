@@ -15,7 +15,6 @@
 namespace App\MathParser\Operators\Logical;
 
 use App\MathParser\Operators\OperatorBase;
-use App\MathParser\Stack;
 
 /**
  * Class OrOperator

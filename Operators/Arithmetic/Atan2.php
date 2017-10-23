@@ -15,10 +15,7 @@
 namespace App\MathParser\Operators\Arithmetic;
 
 use App\MathParser\Contracts\ExpressionContract;
-use App\MathParser\Number;
 use App\MathParser\Operators\FunctionBase;
-use App\MathParser\Operators\OperatorBase;
-use App\MathParser\Stack;
 
 /**
  * Class Atan2

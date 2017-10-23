@@ -15,7 +15,6 @@
 namespace App\MathParser\Operators\Comparison;
 
 use App\MathParser\Operators\OperatorBase;
-use App\MathParser\Stack;
 
 /**
  * Class LessThan

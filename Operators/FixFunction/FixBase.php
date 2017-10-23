@@ -15,7 +15,6 @@
 namespace App\MathParser\Operators\FixFunction;
 
 use App\MathParser\Operators\FunctionBase;
-use App\MathParser\Stack;
 
 /**
  * Class FixBase
