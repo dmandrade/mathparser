@@ -68,52 +68,49 @@ abstract class FixFunction {
             self::$valueBuffer[ $bufferName ] = array();
         }
 
-        self::$valueBuffer[ $bufferName ][ $curPos ] = $value;
-        self::$valueBuffer[ $bufferName ]            = array_intersect_key( self::$valueBuffer[ $bufferName ],
-            array_flip( array_filter( array_keys( self::$valueBuffer[ $bufferName ] ),
-                function ( $x ) use ( $curPos ) {
-                    return ( $x >= ( $curPos - 50000 ) && $x <= $curPos );
-                } ) ) );
-
-        $reverse = array_reverse( self::$valueBuffer[ $bufferName ], true );
-
-        $bufferValues = [];
+        self::$valueBuffer[ $bufferName ] = [ $curPos => $value ] + self::$valueBuffer[ $bufferName ];
+        //self::$valueBuffer[ $bufferName ][ $curPos ] = $value;
+        krsort(self::$valueBuffer[ $bufferName ]);
 
         $isCompleteSliceData = false;
-        foreach ( $reverse as $posX => $value ) {
-            if ( $posX > 0 && ( abs( $curPos ) - abs( $posX ) ) >= $interval ) {
-                $isCompleteSliceData = true;
-                break;
-            }
-            $bufferValues[] = $value;
-        }
+        self::$valueBuffer[ $bufferName ]            = array_intersect_key( self::$valueBuffer[ $bufferName ],
+            array_flip( array_filter( array_keys( self::$valueBuffer[ $bufferName ] ),
+                function ( $posX ) use ( $curPos, $interval, &$isCompleteSliceData ) {
+                    if ( !( $posX > ( $curPos - $interval ) && $posX <= $curPos ) ) {
+                        $isCompleteSliceData = true;
+                        return false;
+                    }
+                    return true;
+                } ) ) );
 
-        return self::getBufferResult( $type, $bufferValues, $isCompleteSliceData );
+        return self::getBufferResult( $type, $bufferName, $isCompleteSliceData );
     }
 
     /**
      * @param $type
-     * @param $bufferValues
+     * @param $bufferName
      * @param $isCompleteSliceData
      *
      * @return float|int|mixed
      * @throws FixFunctionException
      */
-    private static function getBufferResult( $type, $bufferValues, $isCompleteSliceData ) {
+    private static function getBufferResult( $type, $bufferName, $isCompleteSliceData ) {
         $result = 0;
-        if ( count( $bufferValues ) > 0 && $isCompleteSliceData ) {
+        $totalBuffer = count( self::$valueBuffer[ $bufferName ] );
+
+        if ( $totalBuffer > 0 && $isCompleteSliceData ) {
             switch ( strtolower( $type ) ) {
                 case 'base':
-                    $result = end( $bufferValues );
+                    $result = end( self::$valueBuffer[ $bufferName ] );
                     break;
                 case 'max':
-                    $result = max( $bufferValues );
+                    $result = max( self::$valueBuffer[ $bufferName ] );
                     break;
                 case 'min':
-                    $result = min( $bufferValues );
+                    $result = min( self::$valueBuffer[ $bufferName ] );
                     break;
                 case 'avg':
-                    $result = array_sum( $bufferValues ) / count( $bufferValues );
+                    $result = array_sum( self::$valueBuffer[ $bufferName ] ) / $totalBuffer;
                     break;
                 default:
                     throw new FixFunctionException( 'Invalid fix function ' . $type );
