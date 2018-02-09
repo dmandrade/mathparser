@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Cache;
  */
 class Engine {
 
-    static protected $cacheTokens = [];
-
     /**
      * @var array
      */
@@ -115,10 +113,6 @@ class Engine {
      * @return array
      */
     protected function tokenize( $string ) {
-        if(isset(self::$cacheTokens[$string])) {
-            return self::$cacheTokens[$string];
-        }
-
         $parts = preg_split(
             '(([a-zA-Z0-9._]+|\d+\.?\d*+|\+|-|\(|\)|\*|/|\,)|\s+)',
             $string,
@@ -133,8 +127,6 @@ class Engine {
                 $value = 'u';
             }
         }
-
-        self::$cacheTokens[$string] = $parts;
 
         return $parts;
     }
