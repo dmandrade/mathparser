@@ -19,6 +19,7 @@ use App\MathParser\Contracts\ParenthesiContract;
 use App\MathParser\Exceptions\CannotRenderException;
 use App\MathParser\Exceptions\MismatchParenteshisException;
 use App\MathParser\Operators\OperatorBase;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class Engine
@@ -26,15 +27,15 @@ use App\MathParser\Operators\OperatorBase;
  */
 class Engine {
 
+    static protected $cacheTokens = [];
+
     /**
      * @var array
      */
     protected $variables = array();
 
     public function registerVariables( array $vars ) {
-        foreach ( $vars as $name => $value ) {
-            $this->registerVariable( $name, $value );
-        }
+        $this->variables += $vars;
 
         return $this;
     }
@@ -49,6 +50,10 @@ class Engine {
         $this->variables[ $name ] = $value;
 
         return $this;
+    }
+
+    public function getVariable( $name ) {
+        return $this->variables[ $name ];
     }
 
     /**
@@ -110,6 +115,10 @@ class Engine {
      * @return array
      */
     protected function tokenize( $string ) {
+        if(isset(self::$cacheTokens[$string])) {
+            return self::$cacheTokens[$string];
+        }
+
         $parts = preg_split(
             '(([a-zA-Z0-9._]+|\d+\.?\d*+|\+|-|\(|\)|\*|/|\,)|\s+)',
             $string,
@@ -124,6 +133,8 @@ class Engine {
                 $value = 'u';
             }
         }
+
+        self::$cacheTokens[$string] = $parts;
 
         return $parts;
     }

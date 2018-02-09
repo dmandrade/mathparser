@@ -25,28 +25,19 @@ use App\MathParser\Contracts\ExpressionContract;
 use App\MathParser\Contracts\NumberContract;
 use App\MathParser\Contracts\VariableContract;
 
-class Stack {
-    protected $data = array();
-
-    public function isEmpty() {
-        return empty( $this->data );
-    }
-
-    public function push( $element ) {
-        $this->data[] = $element;
-    }
+class Stack extends \SplStack {
 
     /**
      * @return NumberContract|ExpressionContract|VariableContract
      */
     public function pop() {
-        return array_pop( $this->data );
+        return parent::pop();
     }
 
     /**
      * @return NumberContract|ExpressionContract|VariableContract
      */
     public function top() {
-        return current( array_slice( $this->data, - 1 ) );
+        return parent::top();
     }
 }
