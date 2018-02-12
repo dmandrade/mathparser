@@ -62,7 +62,7 @@ abstract class FixFunction {
      * @throws FixFunctionException
      */
     private static function updateValue( $value, $curPos, $interval, $type, $varName = '' ) {
-        $bufferName = $type . '_' . $varName;
+        $bufferName = $type . '_' . $interval . '_' . $varName;
 
         if ( ! isset( self::$valueBuffer[ $bufferName ] ) ) {
             self::$valueBuffer[ $bufferName ] = array();
@@ -72,7 +72,7 @@ abstract class FixFunction {
         self::$valueBuffer[$bufferName] = array_intersect_key(self::$valueBuffer[$bufferName],
             array_flip(array_filter(array_keys(self::$valueBuffer[$bufferName]),
                 function ($x) use ($curPos, $interval) {
-                    return ($x >= ($curPos - 50000) and $x <= $curPos);
+                    return ($x >= ($curPos - ($interval + 2000)) and $x <= $curPos);
                 })));
 
         $reverse = array_reverse(self::$valueBuffer[$bufferName], true);
