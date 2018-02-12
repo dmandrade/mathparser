@@ -20,6 +20,7 @@ use App\MathParser\Exceptions\CannotRenderException;
 use App\MathParser\Exceptions\MismatchParenteshisException;
 use App\MathParser\Operators\OperatorBase;
 use Illuminate\Support\Facades\Cache;
+use Mockery\Matcher\Closure;
 
 /**
  * Class Engine
@@ -33,7 +34,7 @@ class Engine {
     protected $variables = array();
 
     public function registerVariables( array $vars ) {
-        $this->variables += $vars;
+        $this->variables = array_merge($this->variables, $vars);
 
         return $this;
     }
@@ -50,8 +51,12 @@ class Engine {
         return $this;
     }
 
-    public function getVariable( $name ) {
-        return $this->variables[ $name ];
+    public function getVariable( $name, $default = null ) {
+        if(isset($this->variables[ $name ])) {
+            return $this->variables[ $name ];
+        }
+
+        return $default;
     }
 
     /**
