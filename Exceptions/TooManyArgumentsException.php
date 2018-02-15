@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file TooManyArguments.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 04/10/17 at 17:14
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file TooManyArgumentsException.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:04
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 /**
@@ -21,6 +21,7 @@
 
 namespace App\MathParser\Exceptions;
 
-class TooManyArgumentsException extends \Exception {
+class TooManyArgumentsException extends \Exception
+{
 
 }

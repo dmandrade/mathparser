@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file Acosh.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 03/10/17 at 16:10
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file Acosh.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:05
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators\Arithmetic;
@@ -20,7 +20,8 @@ use App\MathParser\Operators\OperatorBase;
  * Class Acosh
  * @package App\MathParser\Operators\Arithmetic
  */
-class Acosh extends OperatorBase {
+class Acosh extends OperatorBase
+{
     const SYMBOL = 'Math.acosh';
 
     /**
@@ -39,7 +40,8 @@ class Acosh extends OperatorBase {
      *
      * @return float|int
      */
-    public function handle( $left, $right = null ) {
-        return acosh( $left );
+    public function handle($left, $right = null)
+    {
+        return acosh($left);
     }
 }

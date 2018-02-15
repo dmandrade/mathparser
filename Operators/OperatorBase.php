@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file OperatorBase.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 03/10/17 at 11:07
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file OperatorBase.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:04
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators;
@@ -23,7 +23,8 @@ use App\MathParser\Stack;
  * Class OperatorBase
  * @package App\MathParser\Operators
  */
-abstract class OperatorBase extends Expression implements OperatorContract {
+abstract class OperatorBase extends Expression implements OperatorContract
+{
 
     /**
      * @var int
@@ -48,14 +49,16 @@ abstract class OperatorBase extends Expression implements OperatorContract {
     /**
      * @return int
      */
-    public function getPrecedence() {
+    public function getPrecedence()
+    {
         return $this->precedence;
     }
 
     /**
      * @return bool
      */
-    public function isLeftAssoc() {
+    public function isLeftAssoc()
+    {
         return $this->leftAssoc;
     }
 
@@ -64,26 +67,27 @@ abstract class OperatorBase extends Expression implements OperatorContract {
      *
      * @return mixed
      */
-    public function operate( Stack $stack ) {
+    public function operate(Stack $stack)
+    {
         $right = null;
-        $first = $stack->pop()->operate( $stack );
+        $first = $stack->pop()->operate($stack);
 
-        if ( ! $this->returnVarObject && $first instanceof ExpressionContract ) {
+        if (!$this->returnVarObject && $first instanceof ExpressionContract) {
             $first = $first->getValue();
         }
 
         $left = $first;
 
-        if ( ! $this->onlyOneArgument ) {
-            $second = $stack->pop()->operate( $stack );
-            if ( ! $this->returnVarObject && $second instanceof ExpressionContract ) {
+        if (!$this->onlyOneArgument) {
+            $second = $stack->pop()->operate($stack);
+            if (!$this->returnVarObject && $second instanceof ExpressionContract) {
                 $second = $second->getValue();
             }
             $right = $left;
-            $left  = $second;
+            $left = $second;
         }
 
-        return $this->handle( $left, $right );
+        return $this->handle($left, $right);
     }
 
     /**
@@ -92,5 +96,5 @@ abstract class OperatorBase extends Expression implements OperatorContract {
      *
      * @return mixed
      */
-    protected abstract function handle( $left, $right = null );
+    protected abstract function handle($left, $right = null);
 }

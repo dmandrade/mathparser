@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file MismatchParenteshisException.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 03/10/17 at 13:20
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file MismatchParenteshisException.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:05
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 /**
@@ -21,6 +21,7 @@
 
 namespace App\MathParser\Exceptions;
 
-class MismatchParenteshisException extends \Exception {
+class MismatchParenteshisException extends \Exception
+{
 
 }

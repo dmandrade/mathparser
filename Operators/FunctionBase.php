@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file FunctionBase.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 04/10/17 at 17:03
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file FunctionBase.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:04
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators;
@@ -23,7 +23,8 @@ use App\MathParser\Stack;
  * Class FunctionBase
  * @package App\MathParser\Operators
  */
-abstract class FunctionBase extends Expression implements OperatorContract {
+abstract class FunctionBase extends Expression implements OperatorContract
+{
 
     /**
      * @var int
@@ -38,14 +39,16 @@ abstract class FunctionBase extends Expression implements OperatorContract {
     /**
      * @return int
      */
-    public function getPrecedence() {
+    public function getPrecedence()
+    {
         return $this->precedence;
     }
 
     /**
      * @return bool
      */
-    public function isLeftAssoc() {
+    public function isLeftAssoc()
+    {
         return $this->leftAssoc;
     }
 
@@ -55,13 +58,14 @@ abstract class FunctionBase extends Expression implements OperatorContract {
      * @return mixed
      * @throws TooManyArgumentsException
      */
-    public function operate( Stack $stack ) {
-        $parameters = $stack->pop()->operate( $stack );
-        if ( count( $parameters ) > $this->maxArguments() ) {
-            throw new TooManyArgumentsException( 'Max allowed arguments exceeded for ' . static::SYMBOL . ' function' );
+    public function operate(Stack $stack)
+    {
+        $parameters = $stack->pop()->operate($stack);
+        if (count($parameters) > $this->maxArguments()) {
+            throw new TooManyArgumentsException('Max allowed arguments exceeded for ' . static::SYMBOL . ' function');
         }
 
-        return $this->handle( $parameters );
+        return $this->handle($parameters);
     }
 
     /**
@@ -74,5 +78,5 @@ abstract class FunctionBase extends Expression implements OperatorContract {
      *
      * @return mixed
      */
-    protected abstract function handle( array $parameters );
+    protected abstract function handle(array $parameters);
 }

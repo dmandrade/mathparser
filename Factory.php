@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file Factory.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 04/10/17 at 14:26
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file Factory.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:04
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser;
@@ -21,7 +21,8 @@ use App\MathParser\Contracts\VariableContract;
  * Class Factory
  * @package App\MathParser
  */
-final class Factory {
+final class Factory
+{
 
     protected static $operators = [
         'App\\MathParser\\Operators\\Logical\\AndOperator',
@@ -68,33 +69,34 @@ final class Factory {
         'App\\MathParser\\Operators\\FixFunction\\FixAvg',
     ];
 
-    public static function create( $value ) {
+    public static function create($value)
+    {
 
-        if ( $value instanceof ExpressionContract ) {
+        if ($value instanceof ExpressionContract) {
             return $value;
         }
 
-        if ( $value instanceof VariableContract ) {
+        if ($value instanceof VariableContract) {
             return $value;
         }
 
-        if ( is_numeric( $value ) ) {
-            $expression = new Number( $value );
+        if (is_numeric($value)) {
+            $expression = new Number($value);
         }
 
-        if ( in_array( $value, array( '(', ')' ) ) ) {
-            $expression = new Parenthesis( $value );
+        if (in_array($value, array('(', ')'))) {
+            $expression = new Parenthesis($value);
         }
 
-        if ( ! isset( $expression ) ) {
-            foreach ( self::$operators as $operator ) {
-                if ( $operator::SYMBOL == $value ) {
-                    $expression = new $operator( $value );
+        if (!isset($expression)) {
+            foreach (self::$operators as $operator) {
+                if ($operator::SYMBOL == $value) {
+                    $expression = new $operator($value);
                 }
             }
 
-            if ( ! isset( $expression ) ) {
-                throw new \InvalidArgumentException( 'Undefined Value ' . $value );
+            if (!isset($expression)) {
+                throw new \InvalidArgumentException('Undefined Value ' . $value);
             }
         }
 

@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file LessOrEqual.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 03/10/17 at 11:07
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file LessOrEqual.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:05
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators\Comparison;
@@ -20,7 +20,8 @@ use App\MathParser\Operators\OperatorBase;
  * Class LessOrEqual
  * @package App\MathParser\Operators\Comparison
  */
-class LessOrEqual extends OperatorBase {
+class LessOrEqual extends OperatorBase
+{
     const SYMBOL = '<=';
 
     /**
@@ -39,7 +40,8 @@ class LessOrEqual extends OperatorBase {
      *
      * @return int
      */
-    public function handle( $left, $right = null ) {
-        return (int) ( $left <= $right );
+    public function handle($left, $right = null)
+    {
+        return (int)($left <= $right);
     }
 }

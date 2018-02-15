@@ -1,15 +1,15 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file ExpressionContract.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 04/10/17 at 14:37
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file ExpressionContract.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:04
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 /**
@@ -21,7 +21,8 @@
 
 namespace App\MathParser\Contracts;
 
-interface ExpressionContract {
+interface ExpressionContract
+{
 
     /**
      * @return string

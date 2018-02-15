@@ -1,28 +1,28 @@
 <?php
 /**
- *  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  *  All Rights Reserved
  *
  *  This file is part of the android project.
  *
- * @project NomadLog Portal
- * @file FixFunction.php
- * @author Danilo Andrade <danilo@webbingbrasil.com.br>
- * @date 30/08/17 at 10:24
- * @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
+ *  @project NomadLog Portal
+ *  @file FixFunction.php
+ *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ *  @date 15/02/18 at 11:05
+ *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators\FixFunction;
 
 use App\MathParser\Contracts\VariableContract;
 use App\MathParser\Exceptions\FixFunctionException;
-use App\Utils\ArrayUtil;
 
 /**
  * Class FixFunction
  * @package App\MathParser\Operators\FixFunction
  */
-abstract class FixFunction {
+abstract class FixFunction
+{
     /**
      * @var array
      */
@@ -37,19 +37,20 @@ abstract class FixFunction {
      *
      * @return float|int|mixed
      */
-    static public function calc( $value, $interval = null, $medida = null, $type = 'base' ) {
+    static public function calc($value, $interval = null, $medida = null, $type = 'base')
+    {
         $varName = 'base';
-        if ( $value instanceof VariableContract ) {
+        if ($value instanceof VariableContract) {
             $varName = $value->getName();
-            $value   = $value->getValue();
+            $value = $value->getValue();
         }
-        if ( $medida instanceof VariableContract ) {
+        if ($medida instanceof VariableContract) {
             $medida = $medida->getValue();
         }
         $interval = $interval * $medida;
-        $posX     = self::$posX;
+        $posX = self::$posX;
 
-        return self::updateValue( $value, $posX, $interval, $type, $varName );
+        return self::updateValue($value, $posX, $interval, $type, $varName);
     }
 
     /**
@@ -61,11 +62,12 @@ abstract class FixFunction {
      * @return float|int|mixed
      * @throws FixFunctionException
      */
-    private static function updateValue( $value, $curPos, $interval, $type, $varName = '' ) {
+    private static function updateValue($value, $curPos, $interval, $type, $varName = '')
+    {
         $bufferName = $type . '_' . $interval . '_' . $varName;
 
-        if ( ! isset( self::$valueBuffer[ $bufferName ] ) ) {
-            self::$valueBuffer[ $bufferName ] = array();
+        if (!isset(self::$valueBuffer[$bufferName])) {
+            self::$valueBuffer[$bufferName] = array();
         }
 
         self::$valueBuffer[$bufferName][$curPos] = $value;
@@ -88,7 +90,7 @@ abstract class FixFunction {
             $auxValues[] = $value;
         }
 
-        return self::getBufferResult( $type, $auxValues, $isCompleteSliceData );
+        return self::getBufferResult($type, $auxValues, $isCompleteSliceData);
     }
 
     /**
@@ -98,26 +100,27 @@ abstract class FixFunction {
      * @return float|int|mixed
      * @throws FixFunctionException
      */
-    private static function getBufferResult( $type, $auxValues, $isCompleteSliceData ) {
+    private static function getBufferResult($type, $auxValues, $isCompleteSliceData)
+    {
         $result = 0;
-        $totalBuffer = count( $auxValues );
+        $totalBuffer = count($auxValues);
 
-        if ( $totalBuffer > 0 && $isCompleteSliceData ) {
-            switch ( strtolower( $type ) ) {
+        if ($totalBuffer > 0 && $isCompleteSliceData) {
+            switch (strtolower($type)) {
                 case 'base':
-                    $result = end( $auxValues );
+                    $result = end($auxValues);
                     break;
                 case 'max':
-                    $result = max( $auxValues );
+                    $result = max($auxValues);
                     break;
                 case 'min':
-                    $result = min( $auxValues );
+                    $result = min($auxValues);
                     break;
                 case 'avg':
-                    $result = array_sum( $auxValues ) / $totalBuffer;
+                    $result = array_sum($auxValues) / $totalBuffer;
                     break;
                 default:
-                    throw new FixFunctionException( 'Invalid fix function ' . $type );
+                    throw new FixFunctionException('Invalid fix function ' . $type);
             }
         }
 
@@ -127,14 +130,16 @@ abstract class FixFunction {
     /**
      * @param array $buffer
      */
-    public static function setBuffer( array $buffer ) {
+    public static function setBuffer(array $buffer)
+    {
         self::$valueBuffer = $buffer;
     }
 
     /**
      * @param $posX
      */
-    public static function setPosX( $posX ) {
+    public static function setPosX($posX)
+    {
         self::$posX = $posX;
     }
 }
