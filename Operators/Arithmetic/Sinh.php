@@ -8,7 +8,7 @@
  *  @project NomadLog Portal
  *  @file Sinh.php
  *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
- *  @date 15/02/18 at 11:05
+ *  @date 06/03/18 at 18:08
  *  @copyright  Copyright (c) 2017 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
