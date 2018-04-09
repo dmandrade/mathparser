@@ -68,13 +68,9 @@ class Engine
      */
     public function evaluate($string)
     {
-        try {
-            $stack = $this->parse($string);
+        $stack = $this->parse($string);
 
-            return $this->run($stack);
-        } catch (\Exception $e) {
-            die($string . ' - ' . $e->getMessage());
-        }
+        return $this->run($stack);
     }
 
     /**
@@ -151,11 +147,7 @@ class Engine
         if (isset($this->variables[$token])) {
             $value = $this->variables[$token];
             if (!is_numeric($value)) {
-                try {
-                    $value = $this->evaluate($value);
-                } catch (\Exception $e) {
-                    die('error ' . $e->getMessage());
-                }
+                $value = $this->evaluate($value);
             }
             $var = new Variable($value);
             $var->setName($token);
