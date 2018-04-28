@@ -74,7 +74,7 @@ abstract class FixFunction
         self::$valueBuffer[$bufferName] = array_intersect_key(self::$valueBuffer[$bufferName],
             array_flip(array_filter(array_keys(self::$valueBuffer[$bufferName]),
                 function ($x) use ($curPos, $interval) {
-                    return ($x >= ($curPos - ($interval + 2000)) and $x <= $curPos);
+                    return ($x >= ($curPos - ($interval + 15000)) and $x <= $curPos);
                 })));
 
         $reverse = array_reverse(self::$valueBuffer[$bufferName], true);
