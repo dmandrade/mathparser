@@ -16,6 +16,7 @@ namespace App\MathParser\Operators\FixFunction;
 
 use App\MathParser\Contracts\VariableContract;
 use App\MathParser\Exceptions\FixFunctionException;
+use App\Utils\ArrayUtil;
 
 /**
  * Class FixFunction
@@ -71,10 +72,11 @@ abstract class FixFunction
         }
 
         self::$valueBuffer[$bufferName][$curPos] = $value;
+        $fixPosX = ArrayUtil::numeric_sorted_nearest(array_keys(self::$valueBuffer[$bufferName]), ($curPos - ($interval)));
         self::$valueBuffer[$bufferName] = array_intersect_key(self::$valueBuffer[$bufferName],
             array_flip(array_filter(array_keys(self::$valueBuffer[$bufferName]),
-                function ($x) use ($curPos, $interval) {
-                    return ($x >= ($curPos - ($interval + 15000)) and $x <= $curPos);
+                function ($x) use ($curPos, $interval, $fixPosX) {
+                    return ($x >= $fixPosX and $x <= $curPos);
                 })));
 
         $reverse = array_reverse(self::$valueBuffer[$bufferName], true);
@@ -83,26 +85,27 @@ abstract class FixFunction
 
         $isCompleteSliceData = false;
         foreach ($reverse as $posX => $value) {
+            $auxValues[] = $value;
             if ($posX > 0 and (abs($curPos) - abs($posX)) >= $interval) {
                 $isCompleteSliceData = true;
                 break;
             }
-            $auxValues[] = $value;
         }
 
-        return self::getBufferResult($type, $auxValues, $isCompleteSliceData);
+        return self::getBufferResult($type, $value, $auxValues, $isCompleteSliceData);
     }
 
     /**
      * @param $type
+     * @param $currentValue
      * @param $auxValues
      * @param $isCompleteSliceData
      * @return float|int|mixed
      * @throws FixFunctionException
      */
-    private static function getBufferResult($type, $auxValues, $isCompleteSliceData)
+    private static function getBufferResult($type, $currentValue, $auxValues, $isCompleteSliceData)
     {
-        $result = 0;
+        $result = $currentValue;
         $totalBuffer = count($auxValues);
 
         if ($totalBuffer > 0 && $isCompleteSliceData) {
