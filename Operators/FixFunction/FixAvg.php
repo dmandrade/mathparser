@@ -14,16 +14,22 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
+use App\MathParser\Operators\FixFunctionBase;
+
 /**
  * Class FixAvg
  * @package App\MathParser\Operators\FixFunction
  */
-class FixAvg extends FixBase
+class FixAvg extends FixFunctionBase
 {
     const SYMBOL = 'FixAvg';
 
     /**
-     * @var string
+     * @param array $buffer
+     * @return mixed
      */
-    protected $fixType = 'avg';
+    protected function getFixValue(array $buffer)
+    {
+        return array_sum($buffer) / count($buffer);
+    }
 }

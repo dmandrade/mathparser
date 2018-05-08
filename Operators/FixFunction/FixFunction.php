@@ -5,11 +5,11 @@
  *
  *  This file is part of the NomadLog Portal project.
  *
- *  @project NomadLog Portal
- *  @file FixFunction.php
- *  @author Danilo Andrade <danilo@webbingbrasil.com.br>
- *  @date 06/03/18 at 18:09
- *  @copyright  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
+ * @project NomadLog Portal
+ * @file FixFunction.php
+ * @author Danilo Andrade <danilo@webbingbrasil.com.br>
+ * @date 06/03/18 at 18:09
+ * @copyright  Copyright (c) 2018 Webbing Brasil (http://www.webbingbrasil.com.br)
  */
 
 namespace App\MathParser\Operators\FixFunction;
@@ -37,6 +37,7 @@ abstract class FixFunction
      * @param string $type
      *
      * @return float|int|mixed
+     * @throws FixFunctionException
      */
     static public function calc($value, $interval = null, $medida = null, $type = 'base')
     {
@@ -45,89 +46,40 @@ abstract class FixFunction
             $varName = $value->getName();
             $value = $value->getValue();
         }
+
         if ($medida instanceof VariableContract) {
             $medida = $medida->getValue();
         }
-        $interval = $interval * $medida;
-        $posX = self::$posX;
 
-        return self::updateValue($value, $posX, $interval, $type, $varName);
+        $interval = $interval * $medida;
+        $bufferName = $type . '_' . $interval . '_' . $varName;
+
+        self::updateBuffer($bufferName, $value, $interval);
+
+        return array_reverse(self::$valueBuffer[$bufferName], true);
     }
 
     /**
      * @param $value
-     * @param $curPos
      * @param $interval
-     * @param $type
-     * @param string $varName
      * @return float|int|mixed
-     * @throws FixFunctionException
      */
-    private static function updateValue($value, $curPos, $interval, $type, $varName = '')
+    private static function updateBuffer($bufferName, $value, $interval)
     {
-        $bufferName = $type . '_' . $interval . '_' . $varName;
 
         if (!isset(self::$valueBuffer[$bufferName])) {
             self::$valueBuffer[$bufferName] = array();
         }
+        $curPos = self::$posX;
 
         self::$valueBuffer[$bufferName][$curPos] = $value;
-        $fixPosX = ArrayUtil::numeric_sorted_nearest(array_keys(self::$valueBuffer[$bufferName]), ($curPos - ($interval)));
+        $fixPosX = ArrayUtil::numeric_sorted_nearest(array_keys(self::$valueBuffer[$bufferName]), ($curPos - $interval));
+
         self::$valueBuffer[$bufferName] = array_intersect_key(self::$valueBuffer[$bufferName],
             array_flip(array_filter(array_keys(self::$valueBuffer[$bufferName]),
                 function ($x) use ($curPos, $interval, $fixPosX) {
                     return ($x >= $fixPosX and $x <= $curPos);
                 })));
-
-        $reverse = array_reverse(self::$valueBuffer[$bufferName], true);
-
-        $auxValues = [];
-
-        $isCompleteSliceData = false;
-        foreach ($reverse as $posX => $value) {
-            $auxValues[] = $value;
-            if ($posX > 0 and (abs($curPos) - abs($posX)) >= $interval) {
-                $isCompleteSliceData = true;
-                break;
-            }
-        }
-
-        return self::getBufferResult($type, $value, $auxValues, $isCompleteSliceData);
-    }
-
-    /**
-     * @param $type
-     * @param $currentValue
-     * @param $auxValues
-     * @param $isCompleteSliceData
-     * @return float|int|mixed
-     * @throws FixFunctionException
-     */
-    private static function getBufferResult($type, $currentValue, $auxValues, $isCompleteSliceData)
-    {
-        $result = $currentValue;
-        $totalBuffer = count($auxValues);
-
-        if ($totalBuffer > 0 && $isCompleteSliceData) {
-            switch (strtolower($type)) {
-                case 'base':
-                    $result = end($auxValues);
-                    break;
-                case 'max':
-                    $result = max($auxValues);
-                    break;
-                case 'min':
-                    $result = min($auxValues);
-                    break;
-                case 'avg':
-                    $result = array_sum($auxValues) / $totalBuffer;
-                    break;
-                default:
-                    throw new FixFunctionException('Invalid fix function ' . $type);
-            }
-        }
-
-        return $result;
     }
 
     /**

@@ -14,16 +14,22 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
+use App\MathParser\Operators\FixFunctionBase;
+
 /**
  * Class FixMax
  * @package App\MathParser\Operators\FixFunction
  */
-class FixMax extends FixBase
+class FixMax extends FixFunctionBase
 {
     const SYMBOL = 'FixMax';
 
     /**
-     * @var string
+     * @param array $buffer
+     * @return mixed
      */
-    protected $fixType = 'max';
+    protected function getFixValue(array $buffer)
+    {
+        return max($buffer);
+    }
 }

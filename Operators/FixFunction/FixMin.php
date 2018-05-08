@@ -14,16 +14,22 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
+use App\MathParser\Operators\FixFunctionBase;
+
 /**
  * Class FixMin
  * @package App\MathParser\Operators\FixFunction
  */
-class FixMin extends FixBase
+class FixMin extends FixFunctionBase
 {
     const SYMBOL = 'FixMin';
 
     /**
-     * @var string
+     * @param array $buffer
+     * @return mixed
      */
-    protected $fixType = 'min';
+    protected function getFixValue(array $buffer)
+    {
+        return min($buffer);
+    }
 }

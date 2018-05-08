@@ -14,37 +14,22 @@
 
 namespace App\MathParser\Operators\FixFunction;
 
-use App\MathParser\Operators\FunctionBase;
+use App\MathParser\Operators\FixFunctionBase;
 
 /**
  * Class FixBase
  * @package App\MathParser\Operators\FixFunction
  */
-class FixBase extends FunctionBase
+class FixBase extends FixFunctionBase
 {
     const SYMBOL = 'FixBase';
 
-    protected $fixType = 'base';
-
     /**
-     * @return int
-     */
-    protected function maxArguments()
-    {
-        return 3;
-    }
-
-    /**
-     * @param array $parameters
-     *
+     * @param array $buffer
      * @return mixed
      */
-    protected function handle(array $parameters)
+    protected function getFixValue(array $buffer)
     {
-        $value = $parameters[0];
-        $interval = $parameters[1];
-        $medida = $parameters[2];
-
-        return FixFunction::calc($value, $interval, $medida, $this->fixType);
+        return end($buffer);
     }
 }
