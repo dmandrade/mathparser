@@ -15,6 +15,7 @@
 namespace App\MathParser;
 
 use App\MathParser\Contracts\ExpressionContract;
+use App\MathParser\Contracts\NullContract;
 use App\MathParser\Contracts\VariableContract;
 
 /**
@@ -69,6 +70,10 @@ final class Factory
         'App\\MathParser\\Operators\\FixFunction\\FixAvg',
     ];
 
+    /**
+     * @param mixed $value
+     * @return Expression
+     */
     public static function create($value)
     {
 
@@ -78,6 +83,14 @@ final class Factory
 
         if ($value instanceof VariableContract) {
             return $value;
+        }
+
+        if($value instanceof NullContract){
+            return $value;
+        }
+
+        if(empty($value)) {
+            $expression = new Nullable();
         }
 
         if (is_numeric($value)) {

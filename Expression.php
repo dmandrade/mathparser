@@ -33,7 +33,7 @@ abstract class Expression implements ExpressionContract
      *
      * @param $value
      */
-    public function __construct($value)
+    public function __construct($value=null)
     {
         $this->value = $value;
     }

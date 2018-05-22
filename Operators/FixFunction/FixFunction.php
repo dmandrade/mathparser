@@ -28,16 +28,17 @@ abstract class FixFunction
      * @var array
      */
     private static $valueBuffer = array();
+    /**
+     * @var integer
+     */
     private static $posX;
 
     /**
-     * @param mixed $value
-     * @param mixed $interval
-     * @param mixed $medida
+     * @param $value
+     * @param null $interval
+     * @param null $medida
      * @param string $type
-     *
-     * @return float|int|mixed
-     * @throws FixFunctionException
+     * @return array
      */
     static public function calc($value, $interval = null, $medida = null, $type = 'base')
     {
@@ -60,9 +61,9 @@ abstract class FixFunction
     }
 
     /**
+     * @param $bufferName
      * @param $value
      * @param $interval
-     * @return float|int|mixed
      */
     private static function updateBuffer($bufferName, $value, $interval)
     {
@@ -91,7 +92,7 @@ abstract class FixFunction
     }
 
     /**
-     * @param $posX
+     * @param integer $posX
      */
     public static function setPosX($posX)
     {

@@ -39,8 +39,13 @@ abstract class FixFunctionBase extends FunctionBase
         $value = $parameters[0];
         $interval = $parameters[1];
         $medida = $parameters[2];
+        $buffer = FixFunction::calc($value, $interval, $medida, static::SYMBOL);
 
-        return $this->getFixValue(FixFunction::calc($value, $interval, $medida, static::SYMBOL));
+        if(!is_array($buffer) || empty($buffer)) {
+            return null;
+        }
+
+        return $this->getFixValue($buffer);
     }
 
     /**

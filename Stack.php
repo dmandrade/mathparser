@@ -43,4 +43,9 @@ class Stack extends \SplStack
     {
         return parent::top();
     }
+
+    public function push($value)
+    {
+        parent::push($value);
+    }
 }

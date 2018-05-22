@@ -217,9 +217,9 @@ class Engine
     {
         while (!$stack->isEmpty() && ($operator = $stack->pop()) && $operator instanceof OperatorContract) {
             $value = $operator->operate($stack);
-            if (!is_null($value)) {
+            //if (!is_null($value)) {
                 $stack->push(Factory::create($value));
-            }
+            //}
         }
 
         return isset($operator) ? $operator->render() : $this->render($stack);
