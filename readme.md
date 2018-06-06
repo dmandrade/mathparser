@@ -1,14 +1,13 @@
 Expression Evaluator
 ====
 
-I looked around so much to find an expression evaluator, and none of my findings supported logical and comparison operators.
-I created this package from a gist I found. I will be writing a service provider for Laravel 5.1 soon.
+A expression evaluator package with support to logical and comparison operators, also custom function and variables.
 
 Example Usage
 ---
-> $exEngine = new MathParser\Engine;
+> $math = new MathParser\Engine;
 
-> echo $exEngine->evalute('5 + 3 * 2');
+> echo $math->evalute('5 + 3 * 2');
 
 > // outputs 11
 
